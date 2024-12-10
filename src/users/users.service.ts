@@ -1,5 +1,5 @@
 import { Body, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dtos/CreateUser.dto';
+import { CreateUserDetails } from './utils/types';
 
 @Injectable()
 export class UsersService {
@@ -25,16 +25,17 @@ export class UsersService {
         password: "James12045"
     }]
 
-    async getUsers(): Promise<any>{
+    async getUsers() {
        return this.users
     }
 
-    async createUser(@Body() body: CreateUserDto): Promise<any> {
-        const newUser = {...body}
-        this.users.push(newUser)
+    async createUser(userDetails: CreateUserDetails){
+       return this.users.push(userDetails)
     }
 
-    async getUserById(id: string): Promise<any>{
-         return  {id}
+    async getUserById(id: string){
+         return {id}
     }
 }
+
+
